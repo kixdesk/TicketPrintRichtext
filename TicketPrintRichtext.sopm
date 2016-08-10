@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<otrs_package version="1.0">
+    <CVS>$Id$</CVS>
+    <Name>TicketPrintRichtext</Name>
+    <Vendor>c.a.p.e. IT GmbH</Vendor>
+    <URL>http://www.cape-it.de/</URL>
+    <Description Lang="en">TicketPrintRichtext.</Description>
+    <Description Lang="de">TicketPrintRichtext.</Description>
+    <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
+    <ChangeLog>2013-05-07 v0.1.0 New package</ChangeLog>
+    <Version>0.0.0</Version>
+    <Framework>5.0.x</Framework>
+    <BuildDate>?</BuildDate>
+    <BuildHost>?</BuildHost>
+    <Filelist>
+        <File Permission="644" Location="Kernel/Config/Files/Config_TicketPrintRichtext.xml"/>
+        <File Permission="644" Location="Kernel/Language/de_TicketPrintRichtext.pm"/>
+        <File Permission="644" Location="Kernel/Modules/AgentTicketPrintRichtext.pm"/>
+        <File Permission="644" Location="Kernel/Output/HTML/OutputFilter/TicketPrintRichtext.pm"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/AgentTicketPrintRichtext.tt"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/PrintFooter.tt"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/PrintHeader.tt"/>
+        <File Permission="644" Location="var/httpd/htdocs/js/Core.Agent.ExtendedPrintDialog.js"/>
+        <File Permission="644" Location="var/packagesetup/TicketPrintRichtext.pm"/>
+        <File Permission="644" Location="doc/CHANGES_TicketPrintRichtext.md"/>
+        <File Permission="644" Location="doc/en/USAGE_TicketPrintRichtext.pod"/>
+    </Filelist>
+    <DatabaseInstall></DatabaseInstall>
+    <DatabaseReinstall></DatabaseReinstall>
+    <DatabaseUpgrade></DatabaseUpgrade>
+    <DatabaseUninstall></DatabaseUninstall>
+    <CodeInstall Type="post"><![CDATA[
+    my $CodeModule = 'var::packagesetup::' . $Param{Structure}->{Name}->{Content};
+    $Kernel::OM->Get($CodeModule)->CodeInstall();
+    ]]>
+    </CodeInstall>
+    <CodeReinstall Type="post"><![CDATA[
+    my $CodeModule = 'var::packagesetup::' . $Param{Structure}->{Name}->{Content};
+    $Kernel::OM->Get($CodeModule)->CodeReinstall();
+    ]]>
+    </CodeReinstall>
+    <CodeUpgrade Type="post"><![CDATA[
+    my $CodeModule = 'var::packagesetup::' . $Param{Structure}->{Name}->{Content};
+    $Kernel::OM->ObjectsDiscard(
+        Objects            => [$CodeModule],
+        ForcePackageReload => 1,
+    );
+    $Kernel::OM->Get($CodeModule)->CodeUpgrade();
+    ]]>
+    </CodeUpgrade>
+    <CodeUninstall Type="pre"><![CDATA[
+    my $CodeModule = 'var::packagesetup::' . $Param{Structure}->{Name}->{Content};
+    $Kernel::OM->Get($CodeModule)->CodeUninstall();
+    ]]>
+    </CodeUninstall>
+    <IntroInstall Type="pre" Title="Install Information" Lang="en">
+        <![CDATA[
+        <br/>
+        <strong>WELCOME</strong>
+        <br/>
+        <br/>
+        You are about to install the OTRS module TicketPrintRichtext.<br/>
+        <br/>
+        <br/>
+        <br/>
+        c.a.p.e. IT ... easy.<br/>
+        <br/>
+    ]]></IntroInstall>
+    <IntroInstall Type="post" Title="Installation Information" Lang="en">
+        <![CDATA[
+        <br/>
+        <strong>Important Advice:</strong>
+        <br/>
+        <br/>
+        If you are using OTRS with modperl, the webserver must be restarted now. Please do this before you continue the use of this OTRS installation.
+        <br/>
+        <br/>
+        Furthermore you must also delete your OTRS-cache and rebuild your configuration before you continue the use of this OTRS installation.
+        <br/>
+        <br/>
+        <br/>
+        c.a.p.e. IT ... easy.<br/>
+        <br/>
+    ]]></IntroInstall>
+    <IntroUpgrade Type="pre" Title="Upgrade Information" Lang="en">
+        <![CDATA[
+        <br/>
+        <strong>WELCOME</strong>
+        <br/>
+        <br/>
+        You are about to upgrade the TicketPrintRichtext extensions package for OTRS.<br/>
+        <br/>
+        <br/>
+        c.a.p.e. IT ... easy.<br/>
+        <br/>
+    ]]></IntroUpgrade>
+    <IntroUpgrade Type="post" Title="Upgrade Information" Lang="en">
+        <![CDATA[
+        <br/>
+        <strong>Important Advice:</strong>
+        <br/>
+        <br/>
+        If you are using OTRS with modperl, the webserver must be restarted now. Please do this before you continue the use of this OTRS installation.
+        <br/>
+        <br/>
+        Furthermore you must also delete your OTRS-cache and rebuild your configuration before you continue the use of this OTRS installation.
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        c.a.p.e. IT ... easy.<br/>
+        <br/>
+    ]]></IntroUpgrade>
+    <IntroUninstall Type="pre" Title="Uninstallation Information" Lang="en">
+        <![CDATA[
+        <br/>
+        <strong>WELCOME</strong>
+        <br/>
+        <br/>
+        You are about to UNINSTALL the TicketPrintRichtext extensions package for OTRS.<br/>
+        <br/>
+        <br/>
+        c.a.p.e. IT ...easy.<br/>
+        <br/>
+    ]]></IntroUninstall>
+</otrs_package>
